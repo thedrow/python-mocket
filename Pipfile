@@ -1,0 +1,27 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pep8 = "*"
+pytest = "*"
+pytest-cov = "*"
+mock = "*"
+requests = "*"
+redis = "*"
+gevent = "*"
+sure = "*"
+pook = ">=0.2.1"
+flake8 = "*"
+pipenv = "*"
+aiohttp = {markers = "python_version>'3.4'",version = "*"}
+async-timeout = {markers = "python_version>'3.4'",version = "*"}
+setuptools = "*"
+
+[packages]
+python-magic = "*"
+six = "*"
+decorator = "*"
+hexdump = "*"
+urllib3 = "*"

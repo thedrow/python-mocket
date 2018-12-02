@@ -10,7 +10,7 @@ python:
   - "pypy"
 #  - "pypy3"
 install:
-  - make develop
+  - make
 script:
   - make test
 after_success:

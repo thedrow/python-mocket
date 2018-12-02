@@ -14,5 +14,5 @@ services:
 
 build:
   ci:
-    - shippable_retry make develop
+    - shippable_retry make
     - make test-ci

@@ -1,16 +1,9 @@
+#!/usr/bin/env python
+
 import io
-import sys
+import os.path
 
-from setuptools import setup, find_packages, os
-
-
-major, minor = sys.version_info[:2]
-
-install_requires = io.open(os.path.join(os.path.dirname(__file__), 'requirements.txt')).readlines()
-tests_requires = io.open(os.path.join(os.path.dirname(__file__), 'test_requirements.txt')).readlines()
-
-pook_requires = ('pook>=0.2.1', )
-exclude_packages = ('tests', )
+from setuptools import setup, find_packages
 
 
 def read_version(package):
@@ -23,10 +16,6 @@ def read_version(package):
 
 package_name = 'mocket'
 
-# Get package current version
-version = read_version(package_name)
-
-
 setup(
     name=package_name,
     version=read_version(package_name),
@@ -36,14 +25,18 @@ setup(
     description='Socket Mock Framework - for all kinds of socket animals, web-clients included - \
         with gevent/asyncio/SSL support',
     long_description=io.open('README.rst').read(),
-    packages=find_packages(exclude=exclude_packages),
-    install_requires=install_requires,
+    packages=find_packages(exclude=('tests', )),
+    install_requires=[
+        'python-magic',
+        'six',
+        'decorator',
+        'hexdump',
+        'urllib3',
+    ],
     extras_require={
-        'tests': tests_requires,
-        'dev': [],
-        'pook': pook_requires,  # plugins version supporting mocket.plugins.pook.MocketEngine
+        'pook': ('pook>=0.2.1', )  # plugins version supporting mocket.plugins.pook.MocketEngine
     },
-    test_suite='runtests.runtests',
+    test_suite='runtests.run_tests',
     license='BSD',
     classifiers=[
         'Development Status :: 5 - Production/Stable',

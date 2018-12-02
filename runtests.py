@@ -1,23 +1,18 @@
 #!/usr/bin/env python
+
 import sys
-import os
+
+import pytest
 
 
-def runtests(args=None):
-    import pytest
-
-    if not args:
-        args = []
+def run_tests(args=None, python35=False):
+    args = args or []
 
     major, minor = sys.version_info[:2]
 
-    python35 = False
-
-    # aiohttp available on Python >=3.5
-    if major == 3 and minor >= 5:
+    # aiohttp available on Python > 3.4
+    if major == 3 and minor > 4:
         python35 = True
-
-        os.system('pip install aiohttp async_timeout')
 
     if not any(a for a in args[1:] if not a.startswith('-')):
         args.append('tests/main')
@@ -31,4 +26,4 @@ def runtests(args=None):
 
 
 if __name__ == '__main__':
-    runtests(sys.argv)
+    run_tests(sys.argv)
